@@ -19,6 +19,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   };
+  Location.display = () => {
+    return Location.findAll();
+  }
+  Location.add = (data) => {
+    return Location.create(data)
+  }
   Location.init({
     organization_id: {
       type: DataTypes.INTEGER

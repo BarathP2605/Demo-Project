@@ -1,12 +1,14 @@
 const { sequelize, Address } = require('./../models');
 exports.displayData = (req,res) => {
-    Address.findAll().then(ans => {
-        res.json(ans);
-    })
+    Address.display().then(ans => {
+        res.json(ans)
+    }).catch(err => {
+        res.send(err);
+    });
 }
 
 exports.addData = (req,res,data) => {
-    Address.create(data).then(ans => {
+    Address.add(data).then(ans => {
         res.send('created');
         return ans;
     }).catch(err => {

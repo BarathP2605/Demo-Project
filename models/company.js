@@ -13,6 +13,19 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
+  Company.display = () => {
+    return Company.findAll();
+  }
+  Company.search = (id) => {
+    return Company.findOne({
+      where: {
+          name:id
+      }
+  })
+  }
+  Company.add = (data) => {
+    return Company.create(data)
+  }
   Company.init({
     accreditations: {
       type: DataTypes.STRING

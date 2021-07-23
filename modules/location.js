@@ -1,12 +1,14 @@
 const { sequelize, Location } = require('./../models');
 exports.displayData = (req,res) => {
-    Location.findAll().then(ans => {
-        res.json(ans);
-    })
+    Location.display().then(ans => {
+        res.json(ans)
+    }).catch(err => {
+        res.send(err);
+    });
 }
 
 exports.addData = (req,res,data) => {
-    Location.create(data).then(ans => {
+    Location.add(data).then(ans => {
         res.send('created');
         return ans;
     }).catch(err => {

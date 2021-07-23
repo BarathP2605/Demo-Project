@@ -21,6 +21,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   };
+
+
+  Address.display = () => {
+    return Address.findAll();
+  }
+  Address.add = (data) => {
+    return Address.create(data)
+  }
   Address.init({
     location_id: {
       type: DataTypes.INTEGER
@@ -50,9 +58,3 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Address;
 };
-exports.display = (req,res) => {
-  Address.findAll().then(ans =>
-    {
-      res.send(ans);
-    })
-}

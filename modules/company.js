@@ -1,21 +1,19 @@
 //const { formatNamedParameters } = require('sequelize/types/lib/utils');
 const { sequelize, Company } = require('./../models');
 exports.displayData = (req,res) => {
-    Company.findAll().then(ans => {
-        res.json(ans);
-    })
+    Company.display().then(ans => {
+        res.json(ans)
+    }).catch(err => {
+        res.send(err);
+    });
 }
 exports.searchData = (req,res,id) => {
-    Company.findOne({
-        where: {
-            name:id
-        }
-    }).then(ans => {
+    Company.search(id).then(ans => {
         res.json(ans);
     })
 }
 exports.addData = (req,res,data) => {
-    Company.create(data).then(ans => {
+    Company.add(data).then(ans => {
         res.send('created');
         return ans;
     }).catch(err => {
